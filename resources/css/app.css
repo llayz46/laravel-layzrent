@@ -17,3 +17,5 @@
         --background: #0e0e11;
     }
 }
+
+[x-cloak] { display: none !important; }
