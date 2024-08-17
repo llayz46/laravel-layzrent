@@ -1,5 +1,5 @@
 <header class="bg-background shadow">
-    <div class="mx-auto max-w-7xl px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:dark:divide-gray-700 lg:px-8">
+    <div class="mx-auto max-w-full px-2 sm:px-4 lg:divide-y lg:divide-gray-200 lg:dark:divide-gray-700 lg:px-8">
         <div class="relative flex h-16 justify-between">
             <div class="relative z-10 flex px-2 lg:px-0">
                 <a href="{{ route('home') }}" wire:navigate.hover class="flex flex-shrink-0 items-center">
@@ -82,11 +82,11 @@
             </div>
         </div>
         <nav class="hidden lg:flex lg:space-x-8 lg:py-2" aria-label="Global">
-            <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-900 hover:bg-gray-50 hover:text-gray-900" -->
-            <x-nav.nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">Routetest</x-nav.nav-link>
-            <x-nav.nav-link href="{{ route('home') }}" :active="false">Routetest</x-nav.nav-link>
-            <x-nav.nav-link href="{{ route('home') }}" :active="false">Routetest</x-nav.nav-link>
-            <x-nav.nav-link href="{{ route('home') }}" :active="false">Routetest</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">Lakeside</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" :active="false">Pool</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" :active="false">Campaign</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" :active="false">Castle</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" :active="false">Seaside</x-nav.nav-link>
         </nav>
     </div>
 
@@ -102,10 +102,11 @@
          x-transition:leave-end="opacity-0 scale-95">
         <div class="space-y-1 px-2 pb-3 pt-2">
             <!-- Current: "bg-gray-100 text-gray-900", Default: "text-gray-900 hover:bg-gray-50 hover:text-gray-900" -->
-            <x-nav.nav-link href="{{ route('home') }}" :active="request()->routeIs('home')" class="w-full">Routetest</x-nav.nav-link>
-            <x-nav.nav-link href="{{ route('home') }}" :active="false" class="w-full">Routetest</x-nav.nav-link>
-            <x-nav.nav-link href="{{ route('home') }}" :active="false" class="w-full">Routetest</x-nav.nav-link>
-            <x-nav.nav-link href="{{ route('home') }}" :active="false" class="w-full">Routetest</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="request()->routeIs('home')">Lakeside</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Pool</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Campaign</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Castle</x-nav.nav-link>
+            <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Seaside</x-nav.nav-link>
         </div>
         <div class="border-t border-gray-200 pb-3 pt-4">
             <div class="flex items-center px-4">
