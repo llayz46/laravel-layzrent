@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Property;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,9 @@ class PropertyImageFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'url' => $this->faker->imageUrl(),
+            'main' => $this->faker->boolean(),
+            'property_id' => Property::factory(),
         ];
     }
 }

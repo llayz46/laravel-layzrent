@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Property;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,11 @@ class ReservationFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'property_id' => Property::factory(),
+            'user_id' => User::factory(),
+            'start_date' => now(),
+            'end_date' => now()->addDays(3),
+            'price_per_night' => 34999,
         ];
     }
 }

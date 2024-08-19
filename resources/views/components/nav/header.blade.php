@@ -44,7 +44,8 @@
                     <x-theme-toggle/>
                 </div>
 
-                <!-- Profile dropdown -->
+                <x-button tag="a" :href="route('home')" class="ml-4">Sign in</x-button>
+
                 <div class="relative ml-4 flex-shrink-0" x-data="{ open: false }" @click.outside="open = false"
                      @close.stop="open = false">
                     <div @click="open = ! open">

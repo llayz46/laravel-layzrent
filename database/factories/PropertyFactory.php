@@ -35,6 +35,7 @@ class PropertyFactory extends Factory
             'max_guests' => $this->faker->numberBetween(1, 10),
             'active' => $this->faker->boolean,
             'user_id' => \App\Models\User::factory(),
+            'category_id' => \App\Models\Category::factory(),
         ];
     }
 }
