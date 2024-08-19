@@ -19,7 +19,7 @@
                             </svg>
                         </div>
                         <input id="search" name="search"
-                               class="block w-full rounded-md border-0 bg-background py-1.5 pl-10 pr-3 text-title ring-1 ring-inset ring-gray-300 dark:ring-gray-700 placeholder:text-body sm:text-sm sm:leading-6"
+                               class="block w-full rounded-md border-0 bg-background py-1.5 pl-10 pr-3 text-title ring-1 ring-inset ring-gray-300 dark:ring-gray-700 focus:ring-2 focus:ring-inset focus:ring-primary-600 dark:focus:ring-primary-600 placeholder:text-body sm:text-sm sm:leading-6"
                                placeholder="Search" type="search">
                     </div>
                 </div>
@@ -44,45 +44,51 @@
                     <x-theme-toggle/>
                 </div>
 
-                <x-button tag="a" :href="route('home')" class="ml-4">Sign in</x-button>
+                @guest
+                    <x-button tag="a" :href="route('login')" class="ml-4">Sign in</x-button>
+                @else
+                    <div class="relative ml-4 flex-shrink-0" x-data="{ open: false }" @click.outside="open = false"
+                         @close.stop="open = false">
+                        <div @click="open = ! open">
+                            <button type="button"
+                                    class="relative flex rounded-full bg-background focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
+                                    id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="absolute -inset-1.5"></span>
+                                <span class="sr-only">Open user menu</span>
+                                <img class="h-8 w-8 rounded-full"
+                                     src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                     alt="">
+                            </button>
+                        </div>
 
-                <div class="relative ml-4 flex-shrink-0" x-data="{ open: false }" @click.outside="open = false"
-                     @close.stop="open = false">
-                    <div @click="open = ! open">
-                        <button type="button"
-                                class="relative flex rounded-full bg-background focus:outline-none focus:ring-2 focus:ring-primary-600 focus:ring-offset-2"
-                                id="user-menu-button" aria-expanded="false" aria-haspopup="true">
-                            <span class="absolute -inset-1.5"></span>
-                            <span class="sr-only">Open user menu</span>
-                            <img class="h-8 w-8 rounded-full"
-                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                                 alt="">
-                        </button>
-                    </div>
+                        <div x-show="open"
+                             class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+                             x-transition:enter="transition ease-out duration-100"
+                             x-transition:enter-start="transform opacity-0 scale-95"
+                             x-transition:enter-end="transform opacity-100 scale-100"
+                             x-transition:leave="transition ease-in duration-75"
+                             x-transition:leave-start="opacity-100 scale-100"
+                             x-transition:leave-end="opacity-0 scale-95"
+                             @click="open = false"
+                             role="menu"
+                             aria-orientation="vertical"
+                             aria-labelledby="user-menu-button"
+                             tabindex="-1"
+                        >
+                            <x-nav.header-link :active="request()->routeIs('home')" href="{{ route('home') }}">test</x-nav.header-link>
+                            <x-nav.header-link :active="false" href="{{ route('home') }}">test</x-nav.header-link>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="block w-full px-4 py-2 text-sm text-left text-title hover:bg-gray-50 dark:hover:bg-gray-50/25" role="menuitem">Sign out</button>
+                            </form>
+                        </div>
+                @endguest
 
-                    <div x-show="open"
-                         class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
-                         x-transition:enter="transition ease-out duration-100"
-                         x-transition:enter-start="transform opacity-0 scale-95"
-                         x-transition:enter-end="transform opacity-100 scale-100"
-                         x-transition:leave="transition ease-in duration-75"
-                         x-transition:leave-start="opacity-100 scale-100"
-                         x-transition:leave-end="opacity-0 scale-95"
-                         @click="open = false"
-                         role="menu"
-                         aria-orientation="vertical"
-                         aria-labelledby="user-menu-button"
-                         tabindex="-1"
-                    >
-                        <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <x-nav.header-link :active="request()->routeIs('home')" href="{{ route('home') }}">test</x-nav.header-link>
-                        <x-nav.header-link :active="false" href="{{ route('home') }}">test</x-nav.header-link>
-                        <x-nav.header-link :active="false" href="{{ route('home') }}">test</x-nav.header-link>
-                    </div>
                 </div>
             </div>
         </div>
-        <nav class="hidden lg:flex lg:space-x-8 lg:py-2" aria-label="Global">
+        <nav class="hidden lg:flex lg:space-x-8 lg:py-2 lg:px-8" aria-label="Global">
             <x-nav.nav-link href="{{ route('home') }}" :active="request()->routeIs('home')">Lakeside</x-nav.nav-link>
             <x-nav.nav-link href="{{ route('home') }}" :active="false">Pool</x-nav.nav-link>
             <x-nav.nav-link href="{{ route('home') }}" :active="false">Campaign</x-nav.nav-link>
