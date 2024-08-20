@@ -21,18 +21,21 @@ it('belongs to an user', function () {
         ->and($property->user->is($user))->toBeTrue();
 });
 
-it('belongs to many amenities', function () {
+it('has many amenities', function () {
     // AAA
 
     // Arrange = Mise en place de l'environnement
     $property = Property::factory()->create();
     $amenities = Amenity::factory(3)->create();
+
     $property->amenities()->attach($amenities);
 
     // Act = Exécution du code
+    $retrievedAmenities = $property->amenities;
+
     // Assert = Vérification des résultats
-    expect($property->amenities)->toBeInstanceOf(Collection::class)
-        ->and($property->amenities->count())->toBe(3);
+    expect($retrievedAmenities)->toBeInstanceOf(Collection::class)
+        ->and($retrievedAmenities->count())->toBe(3);
 });
 
 it('belongs to an category', function () {

@@ -1,4 +1,4 @@
-<div class="flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+<div class="flex flex-col justify-center py-20 sm:py-12 sm:px-6 lg:px-8">
     <div class="sm:mx-auto sm:w-full sm:max-w-md">
         <a href="{{ route('home') }}">
             <x-application-logo class="mx-auto h-10 w-auto text-primary-500" />
@@ -27,7 +27,7 @@
 
                 <div class="space-y-2">
                     <x-form.label field="password" label="Password"/>
-                    <x-form.input-text type="password" autocomplete="current-password" placeholder="Must be at least 8 characters" field="password"/>
+                    <x-form.input-text type="password" autocomplete="current-password" timing="defer" placeholder="Must be at least 8 characters" field="password"/>
                 </div>
 
                 <div class="space-y-2">
@@ -35,15 +35,13 @@
                     <x-form.input-text type="password" field="password_confirmation"/>
                 </div>
 
-                <div>
-                    <x-form.button>Sign up</x-form.button>
-                </div>
+                <x-form.button>Sign up</x-form.button>
             </form>
 
             <div>
                 <div class="relative mt-10">
                     <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                        <div class="w-full border-t border-gray-200 dark:border-gray-700"></div>
+                        <div class="w-full border-t order-gray-200 dark:border-gray-700"></div>
                     </div>
                     <div class="relative flex justify-center text-sm font-medium leading-6">
                         <span class="bg-background px-6 text-title">Or sign in</span>

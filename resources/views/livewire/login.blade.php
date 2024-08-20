@@ -30,9 +30,7 @@
                     </div>
                 </div>
 
-                <div>
-                    <x-form.button>Sign in</x-form.button>
-                </div>
+                <x-form.button>Sign in</x-form.button>
             </form>
 
             <div>

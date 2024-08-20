@@ -40,6 +40,8 @@ class Register extends Component
 
         Auth::login($user);
 
+        session()->flash('success', 'You have been registered.');
+
         return redirect()->route('home');
     }
 

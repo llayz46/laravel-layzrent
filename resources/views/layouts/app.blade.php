@@ -11,6 +11,15 @@
 </head>
 <body x-data="{darkMode: false, mobileMenu: false}" :class="{'dark': darkMode === true }" class="antialiased bg-background h-full">
     <x-nav.header />
+
+    @if(session()->has('success'))
+        <x-banner precontent="Congratulation !" content="Welcome on LayzRent : {{ auth()->user()->first_name }} {{ auth()->user()->last_name }}"/>
+    @endif
+
+    @if(session()->has('successMessage'))
+        <x-toast>test</x-toast>
+    @endif
+
     {{ $slot }}
 </body>
 </html>

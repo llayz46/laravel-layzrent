@@ -61,7 +61,7 @@
                             </button>
                         </div>
 
-                        <div x-show="open"
+                        <div x-show="open" x-cloak
                              class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-background py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                              x-transition:enter="transition ease-out duration-100"
                              x-transition:enter-start="transform opacity-0 scale-95"
@@ -75,8 +75,9 @@
                              aria-labelledby="user-menu-button"
                              tabindex="-1"
                         >
-                            <x-nav.header-link :active="request()->routeIs('home')" href="{{ route('home') }}">test</x-nav.header-link>
-                            <x-nav.header-link :active="false" href="{{ route('home') }}">test</x-nav.header-link>
+                            <x-nav.header-link href="{{ route('properties') }}" class="w-full" :active="request()->routeIs('properties')">Your properties</x-nav.header-link>
+                            <x-nav.header-link :active="request()->routeIs('home')" href="{{ route('home') }}">Profile</x-nav.header-link>
+                            <x-nav.header-link :active="false" href="{{ route('home') }}">Settings</x-nav.header-link>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 @method('DELETE')
@@ -115,31 +116,33 @@
             <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Castle</x-nav.nav-link>
             <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Seaside</x-nav.nav-link>
         </div>
-        <div class="border-t border-gray-200 pb-3 pt-4">
-            <div class="flex items-center px-4">
-                <div class="flex-shrink-0">
-                    <img class="h-10 w-10 rounded-full"
-                         src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                         alt="">
+        @auth
+            <div class="border-t border-gray-200 pb-3 pt-4">
+                <div class="flex items-center px-4">
+                    <div class="flex-shrink-0">
+                        <img class="h-10 w-10 rounded-full"
+                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                             alt="">
+                    </div>
+                    <div class="ml-3">
+                        <div class="text-base font-medium text-title">{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}</div>
+                        <div class="text-sm font-medium text-body">{{ auth()->user()->email }}</div>
+                    </div>
+                    <div class="ml-auto">
+                        <x-theme-toggle/>
+                    </div>
                 </div>
-                <div class="ml-3">
-                    <div class="text-base font-medium text-gray-800">Tom Cook</div>
-                    <div class="text-sm font-medium text-gray-500">tom@example.com</div>
-                </div>
-                <div class="ml-auto">
-                    <x-theme-toggle/>
+                <div class="mt-3 space-y-1 px-2">
+                    <x-nav.nav-link href="{{ route('properties') }}" class="w-full" :active="request()->routeIs('properties')">Your properties</x-nav.nav-link>
+                    <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Profile</x-nav.nav-link>
+                    <x-nav.nav-link href="{{ route('home') }}" class="w-full" :active="false">Settings</x-nav.nav-link>
+                    <form action="{{ route('logout') }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="block w-full py-2 px-3 text-sm font-medium text-left text-title hover:text-body" role="menuitem">Sign out</button>
+                    </form>
                 </div>
             </div>
-            <div class="mt-3 space-y-1 px-2">
-                <a href="#"
-                   class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Your
-                    Profile</a>
-                <a href="#"
-                   class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Settings</a>
-                <a href="#"
-                   class="block rounded-md px-3 py-2 text-base font-medium text-gray-500 hover:bg-gray-50 hover:text-gray-900">Sign
-                    out</a>
-            </div>
-        </div>
+        @endauth
     </nav>
 </header>
